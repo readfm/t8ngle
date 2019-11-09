@@ -1,4 +1,14 @@
+select{
+	/* text-decoration: underline; */
+	background: #eaeaeade;
+	border: 0;
+	width: auto;
+}
+
+*{
+	outline: none;
+}
+
 .var{
-	text-decoration: underline;
-	cursor: e-resize;
+	border-bottom: 1px dashed grey;
 }

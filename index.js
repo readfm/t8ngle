@@ -29,28 +29,57 @@ const times = {
 	SECOND:'0.001'
 };
 
+const selectAll = qs => Array.prototype.slice.call(
+	document.querySelectorAll(qs)
+);
+
 window.addEventListener('DOMContentLoaded', (event) => {
-	var field_time = select('#ab-time');
+	selectAll('select').map(el => {
+		el.addEventListener('change', function(){
+			if(this.dataset.on)
+				selectAll(this.dataset.on).map(cont => {
+					cont.textContent = this.value;
+				});
+		});
+		var event = new Event('change');
+		el.dispatchEvent(event);
+	});
 
 	/*
-	interact(field_time).draggable({
-		onmove: ev => {
-			ev.dx;
-			let dt = (new Date(item.time)).format();
-			this.$('#info-when').setAttribute('datetime', dt);
-		}
-	}).on('tap', 
-	*/
+	var field_time = select('#ab-time');
 
+	
 	var toggle = () => {
 		let keys = Object.keys(times);
 		let index = keys.indexOf(field_time.textContent)+1;
 		if(index > (keys.length-1)) index = 0;
-		console.log(index);
+
 		select('#ab-time').textContent = keys[index];
 		select('#ab-money').textContent = times[keys[index]];
 	};
 
+	interact(field_time).draggable({
+		onmove: ev => {
+			console.log(ev.dx);
+			//let dt = (new Date()).format();
+
+			var field = select('#ab-time').textContent;
+			var count = parseInt(field);
+			var key = (field.indexOf(' ')+1)?field.split(' ')[1]:field;
+			key = key.replace(/s/g, '');
+			if(key == 'LIFE') key = 'YEAR';
+			
+			console.log(ev, count, key);
+
+			if(!count) count = 1;
+			count += parseInt(ev.dx);
+
+			select('#ab-time').textContent = (count == 1)?key:(count + ' ' + key + 's');
+			select('#ab-money').textContent = times[key] * count;		
+		}
+	}).on('tap', ev => toggle());
+
+
 	toggle();
-	field_time.addEventListener('click', ev => toggle());
+	*/
 });
