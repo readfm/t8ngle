@@ -1,10 +1,10 @@
 # t8ngle
-mobile TANGLE variable in text
-
+mobile TANGLE variable in text  
 http://worrydream.com/Tangle/  
-
 apply to define current OPPORTUNITY COST now  
   
+"IF TIME=MONEY and my LIFE value is $4,000,000"  
+
 make work on mobile  
 (numbers are approximate)   
   
